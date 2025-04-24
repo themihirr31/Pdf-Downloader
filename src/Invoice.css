@@ -1,5 +1,3 @@
-/* Invoice.css */
-
 /* ===============================
    Variables & Base Styles
    =============================== */
@@ -33,8 +31,8 @@ body {
 }
 
 /* ===============================
-         Main Container & Layout
-         =============================== */
+      Main Container & Layout
+      =============================== */
 .main-content {
   flex: 1;
   max-width: 1200px;
@@ -45,21 +43,20 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Grid: 1 column mobile → 2 columns tablet+ */
 .invoice {
-  display: grid; /* CSS Grid container */
-  grid-template-columns: 1fr; /* Single column by default */
+  display: grid;
+  grid-template-columns: 1fr;
   gap: var(--gap);
 }
 @media (min-width: 768px) {
   .invoice {
-    grid-template-columns: 280px 1fr; /* Sidebar + main content */
+    grid-template-columns: 280px 1fr;
   }
 }
 
 /* ===============================
-         Sidebar (Aside) Styling
-         =============================== */
+      Sidebar (Aside) Styling
+      =============================== */
 .invoice-aside {
   background: var(--primary-color);
   color: #fff;
@@ -68,11 +65,11 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  order: 0; /* default order */
+  order: 0;
 }
 @media (max-width: 767px) {
   .invoice-aside {
-    order: -1; /* move aside above content on mobile */
+    order: -1;
   }
 }
 
@@ -91,8 +88,8 @@ body {
 }
 
 /* ===============================
-         Main Content Styling
-         =============================== */
+      Main Content Styling
+      =============================== */
 .invoice-content {
   background: var(--bg-light);
   padding: var(--padding);
@@ -101,7 +98,7 @@ body {
 }
 
 .invoice-header {
-  display: flex; /* Flexbox header */
+  display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--gap);
@@ -116,10 +113,10 @@ body {
 }
 
 /* ===============================
-         Responsive Tables
-         =============================== */
+      Responsive Tables
+      =============================== */
 .table-responsive {
-  overflow-x: auto; /* Horizontal scroll on small screens */
+  overflow-x: auto;
   margin-bottom: var(--gap);
 }
 .invoice-details,
@@ -136,12 +133,12 @@ body {
 }
 .invoice-details,
 .invoice-summary {
-  min-width: 0; /* allow tables to shrink/scroll */
+  min-width: 0;
 }
 
 /* ===============================
-         Payment & Message
-         =============================== */
+      Payment & Message
+      =============================== */
 .invoice-payment-details p {
   margin: 0.5rem 0;
 }
@@ -151,18 +148,18 @@ body {
 }
 
 /* ===============================
-         Footer Buttons (Flexbox)
-         =============================== */
+      Footer Buttons (Flexbox)
+      =============================== */
 .invoice-footer {
-  display: flex; /* Flexbox footer */
-  flex-wrap: wrap; /* wrap on small screens */
-  justify-content: flex-end; /* align right on desktop */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 0.5rem;
   margin-top: var(--gap);
 }
 .invoice-footer .btn {
-  flex: 0 1 auto; /* don’t stretch too much */
-  min-width: 120px; /* tappable size */
+  flex: 0 1 auto;
+  min-width: 120px;
   padding: 0.75rem 1.25rem;
   font-size: 0.9rem;
   border: none;
@@ -174,25 +171,24 @@ body {
   transform: translateY(-2px);
 }
 
-/* Adjust button layout on mobile */
 @media (max-width: 767px) {
   .invoice-footer {
-    justify-content: center; /* center on phones */
+    justify-content: center;
   }
   .invoice-footer .btn {
-    flex: 1 1 100%; /* full-width buttons */
+    flex: 1 1 100%;
   }
 }
 
 /* ===============================
-         Font & Padding Tweaks
-         =============================== */
+      Font & Padding Tweaks
+      =============================== */
 @media (max-width: 480px) {
   body {
-    font-size: 0.9rem; /* smaller base font */
+    font-size: 0.9rem;
   }
   .main-content {
-    padding: 0.75rem; /* reduce padding */
+    padding: 0.75rem;
   }
   .invoice-header,
   .invoice-payment-details,
@@ -202,11 +198,11 @@ body {
 }
 
 /* ===============================
-         Print Styles
+      Print Styles
       =============================== */
 @media print {
   body {
-    font-size: 12px; /* Set a readable font size for printing */
+    font-size: 12px;
   }
 
   .main-content {
@@ -218,15 +214,17 @@ body {
 
   .invoice {
     display: block;
-    grid-template-columns: none; /* Disable grid layout for print */
+    grid-template-columns: none;
+    page-break-inside: avoid;
+    max-width: 100%;
   }
 
   .invoice-aside {
-    background: none; /* Remove background for print */
+    background: none;
     color: #000;
     padding: 10px;
     order: 0;
-    width: 100%; /* Ensure the sidebar takes full width */
+    width: 100%;
   }
 
   .invoice-logo {
@@ -241,59 +239,29 @@ body {
   }
 
   .table-responsive {
-    overflow-x: visible; /* Ensure the table fits */
+    overflow-x: visible;
   }
 
   .invoice-details,
   .invoice-summary {
     width: 100%;
     border: 1px solid #e1e1e1;
-    page-break-inside: avoid; /* Avoid page break inside the table */
+    page-break-inside: avoid;
   }
 
   .invoice-footer {
-    display: block;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
+    display: none; /* Hide all buttons when printing or saving to PDF */
   }
 
-  /* Ensure the footer buttons are not too large for print */
-  .invoice-footer .btn {
-    padding: 0.75rem;
-    min-width: auto;
-    font-size: 1rem;
-  }
-
-  /* Set the page size and margins for A4 */
   @page {
     size: A4;
     margin: 10mm;
   }
 
-  /* Make sure the content stays within the boundaries of A4 */
   .invoice-header,
   .invoice-footer,
   .invoice-content {
     page-break-before: avoid;
     page-break-after: avoid;
-  }
-
-  /* Fix for making content fit on one page */
-  .invoice {
-    max-width: 100%;
-    overflow: visible;
-  }
-
-  /* Ensure content fits well on mobile screens for printing */
-  @media (max-width: 768px) {
-    .invoice {
-      padding: 10px;
-    }
-
-    .invoice-aside {
-      order: 0;
-      width: 100%;
-    }
   }
 }

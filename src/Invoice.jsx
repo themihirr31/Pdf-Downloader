@@ -7,24 +7,36 @@ const Invoice = () => {
     const downloadBtn = document.getElementById("download-btn");
     downloadBtn.style.display = "none";
 
-    const element = document.getElementById("invoice");
+    const invoice = document.getElementById("invoice");
+
+    // Create a clone to apply desktop style
+    const clone = invoice.cloneNode(true);
+    clone.style.width = "794px"; // A4 width in pixels at 96dpi
+    clone.style.padding = "20px";
+    clone.style.boxSizing = "border-box";
+    clone.style.background = "#fff";
+
+    const wrapper = document.createElement("div");
+    wrapper.appendChild(clone);
+    document.body.appendChild(wrapper);
 
     html2pdf()
-      .from(element)
+      .from(clone)
       .set({
-        margin: [10, 10, 10, 10], // top, left, bottom, right in mm
+        margin: 0,
         filename: "invoice.pdf",
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: { scale: 2 },
         jsPDF: {
-          unit: "mm", // use millimeters
-          format: "a4", // ISO A4 size
+          unit: "mm",
+          format: "a4",
           orientation: "portrait",
         },
       })
       .save()
       .then(() => {
         downloadBtn.style.display = "inline-block";
+        document.body.removeChild(wrapper); // Clean up the clone
       });
   };
 
