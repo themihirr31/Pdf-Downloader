@@ -33,8 +33,8 @@ body {
 }
 
 /* ===============================
-      Main Container & Layout
-      =============================== */
+         Main Container & Layout
+         =============================== */
 .main-content {
   flex: 1;
   max-width: 1200px;
@@ -58,8 +58,8 @@ body {
 }
 
 /* ===============================
-      Sidebar (Aside) Styling
-      =============================== */
+         Sidebar (Aside) Styling
+         =============================== */
 .invoice-aside {
   background: var(--primary-color);
   color: #fff;
@@ -91,8 +91,8 @@ body {
 }
 
 /* ===============================
-      Main Content Styling
-      =============================== */
+         Main Content Styling
+         =============================== */
 .invoice-content {
   background: var(--bg-light);
   padding: var(--padding);
@@ -116,8 +116,8 @@ body {
 }
 
 /* ===============================
-      Responsive Tables
-      =============================== */
+         Responsive Tables
+         =============================== */
 .table-responsive {
   overflow-x: auto; /* Horizontal scroll on small screens */
   margin-bottom: var(--gap);
@@ -134,15 +134,14 @@ body {
   padding: 0.75rem;
   border: 1px solid #e1e1e1;
 }
-/* Remove fixed min‐width */
 .invoice-details,
 .invoice-summary {
   min-width: 0; /* allow tables to shrink/scroll */
 }
 
 /* ===============================
-      Payment & Message
-      =============================== */
+         Payment & Message
+         =============================== */
 .invoice-payment-details p {
   margin: 0.5rem 0;
 }
@@ -152,8 +151,8 @@ body {
 }
 
 /* ===============================
-      Footer Buttons (Flexbox)
-      =============================== */
+         Footer Buttons (Flexbox)
+         =============================== */
 .invoice-footer {
   display: flex; /* Flexbox footer */
   flex-wrap: wrap; /* wrap on small screens */
@@ -186,8 +185,8 @@ body {
 }
 
 /* ===============================
-      Font & Padding Tweaks
-      =============================== */
+         Font & Padding Tweaks
+         =============================== */
 @media (max-width: 480px) {
   body {
     font-size: 0.9rem; /* smaller base font */
@@ -199,5 +198,102 @@ body {
   .invoice-payment-details,
   .invoice-message {
     margin-bottom: 0.75rem;
+  }
+}
+
+/* ===============================
+         Print Styles
+      =============================== */
+@media print {
+  body {
+    font-size: 12px; /* Set a readable font size for printing */
+  }
+
+  .main-content {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    box-shadow: none;
+  }
+
+  .invoice {
+    display: block;
+    grid-template-columns: none; /* Disable grid layout for print */
+  }
+
+  .invoice-aside {
+    background: none; /* Remove background for print */
+    color: #000;
+    padding: 10px;
+    order: 0;
+    width: 100%; /* Ensure the sidebar takes full width */
+  }
+
+  .invoice-logo {
+    height: auto;
+    background: none;
+  }
+
+  .invoice-content {
+    padding: 10px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .table-responsive {
+    overflow-x: visible; /* Ensure the table fits */
+  }
+
+  .invoice-details,
+  .invoice-summary {
+    width: 100%;
+    border: 1px solid #e1e1e1;
+    page-break-inside: avoid; /* Avoid page break inside the table */
+  }
+
+  .invoice-footer {
+    display: block;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  /* Ensure the footer buttons are not too large for print */
+  .invoice-footer .btn {
+    padding: 0.75rem;
+    min-width: auto;
+    font-size: 1rem;
+  }
+
+  /* Set the page size and margins for A4 */
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+
+  /* Make sure the content stays within the boundaries of A4 */
+  .invoice-header,
+  .invoice-footer,
+  .invoice-content {
+    page-break-before: avoid;
+    page-break-after: avoid;
+  }
+
+  /* Fix for making content fit on one page */
+  .invoice {
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  /* Ensure content fits well on mobile screens for printing */
+  @media (max-width: 768px) {
+    .invoice {
+      padding: 10px;
+    }
+
+    .invoice-aside {
+      order: 0;
+      width: 100%;
+    }
   }
 }
