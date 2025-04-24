@@ -7,23 +7,12 @@ const Invoice = () => {
     const downloadBtn = document.getElementById("download-btn");
     downloadBtn.style.display = "none";
 
-    const invoice = document.getElementById("invoice");
-
-    // Create a clone to apply desktop style
-    const clone = invoice.cloneNode(true);
-    clone.style.width = "794px"; // A4 width in pixels at 96dpi
-    clone.style.padding = "20px";
-    clone.style.boxSizing = "border-box";
-    clone.style.background = "#fff";
-
-    const wrapper = document.createElement("div");
-    wrapper.appendChild(clone);
-    document.body.appendChild(wrapper);
+    const element = document.getElementById("invoice");
 
     html2pdf()
-      .from(clone)
+      .from(element)
       .set({
-        margin: 0,
+        margin: [10, 10, 10, 10],
         filename: "invoice.pdf",
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: { scale: 2 },
@@ -36,14 +25,12 @@ const Invoice = () => {
       .save()
       .then(() => {
         downloadBtn.style.display = "inline-block";
-        document.body.removeChild(wrapper); // Clean up the clone
       });
   };
 
   return (
     <div className="main-content container" id="invoice">
       <div className="invoice">
-        {/* Aside Section */}
         <aside className="invoice-aside">
           <div className="invoice-logo" />
           <div className="invoice-person">
@@ -63,19 +50,11 @@ const Invoice = () => {
           </div>
           <div className="invoice-company-info">
             <span className="title">Maisonette Company</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <ul className="contact-list">
-              <li>+1 (535) 899-9278</li>
-              <li>+1 (656) 355-8302</li>
-            </ul>
-            <ul className="contact-list">
-              <li>maisonette@company.co</li>
-              <li>maisonette@support.co</li>
-            </ul>
+            <p>Contact: +1 (535) 899-9278</p>
+            <p>Email: maisonette@company.co</p>
           </div>
         </aside>
 
-        {/* Main Content */}
         <section className="invoice-content">
           <header className="invoice-header">
             <div className="invoice-title">Invoice</div>
@@ -100,25 +79,17 @@ const Invoice = () => {
               </thead>
               <tbody>
                 <tr>
-                  <td>
-                    Web design (Etiam sagittis metus sit amet mauris gravida
-                    hendrerit)
-                  </td>
+                  <td>Web design</td>
                   <td>60</td>
                   <td>$4,200.00</td>
                 </tr>
                 <tr>
-                  <td>
-                    Responsive design (Etiam sagittis metus sit amet mauris
-                    gravida hendrerit)
-                  </td>
+                  <td>Responsive design</td>
                   <td>10</td>
                   <td>$1,500.00</td>
                 </tr>
                 <tr>
-                  <td>
-                    Logo design (Cras faucibus tincidunt elit id rhoncus.)
-                  </td>
+                  <td>Logo design</td>
                   <td>12</td>
                   <td>$1,700.00</td>
                 </tr>
@@ -159,19 +130,11 @@ const Invoice = () => {
             </p>
           </div>
 
-          <div className="invoice-message">
-            <h2>Thank you for contacting us!</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              quis massa nisl. Sed fringilla turpis id mi ultrices, et faucibus
-              ipsum aliquam.
-            </p>
-          </div>
+          <p style={{ textAlign: "center", fontSize: "0.9rem" }}>
+            Thank you for your business!
+          </p>
 
           <footer className="invoice-footer">
-            <button className="btn btn-secondary">Save PDF</button>
-            <button className="btn btn-secondary">Print</button>
-            <button className="btn btn-primary">Pay now</button>
             <button
               id="download-btn"
               className="btn btn-success"

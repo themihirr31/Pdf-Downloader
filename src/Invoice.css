@@ -1,8 +1,6 @@
 /* ===============================
    Variables & Base Styles
    =============================== */
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
-
 :root {
   --primary-color: #4a90e2;
   --secondary-color: #f5f7fa;
@@ -14,9 +12,7 @@
   --padding: 1rem;
 }
 
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
 }
 
@@ -31,8 +27,8 @@ body {
 }
 
 /* ===============================
-      Main Container & Layout
-      =============================== */
+        Main Container & Layout
+        =============================== */
 .main-content {
   flex: 1;
   max-width: 1200px;
@@ -55,8 +51,8 @@ body {
 }
 
 /* ===============================
-      Sidebar (Aside) Styling
-      =============================== */
+        Sidebar (Aside) Styling
+        =============================== */
 .invoice-aside {
   background: var(--primary-color);
   color: #fff;
@@ -88,8 +84,8 @@ body {
 }
 
 /* ===============================
-      Main Content Styling
-      =============================== */
+        Main Content Styling
+        =============================== */
 .invoice-content {
   background: var(--bg-light);
   padding: var(--padding);
@@ -113,8 +109,8 @@ body {
 }
 
 /* ===============================
-      Responsive Tables
-      =============================== */
+        Responsive Tables
+        =============================== */
 .table-responsive {
   overflow-x: auto;
   margin-bottom: var(--gap);
@@ -131,14 +127,10 @@ body {
   padding: 0.75rem;
   border: 1px solid #e1e1e1;
 }
-.invoice-details,
-.invoice-summary {
-  min-width: 0;
-}
 
 /* ===============================
-      Payment & Message
-      =============================== */
+        Payment & Message
+        =============================== */
 .invoice-payment-details p {
   margin: 0.5rem 0;
 }
@@ -148,8 +140,8 @@ body {
 }
 
 /* ===============================
-      Footer Buttons (Flexbox)
-      =============================== */
+        Footer Buttons (Flexbox)
+        =============================== */
 .invoice-footer {
   display: flex;
   flex-wrap: wrap;
@@ -181,8 +173,8 @@ body {
 }
 
 /* ===============================
-      Font & Padding Tweaks
-      =============================== */
+        Font & Padding Tweaks
+        =============================== */
 @media (max-width: 480px) {
   body {
     font-size: 0.9rem;
@@ -198,8 +190,8 @@ body {
 }
 
 /* ===============================
-      Print Styles
-      =============================== */
+        Print Styles
+        =============================== */
 @media print {
   body {
     font-size: 12px;
