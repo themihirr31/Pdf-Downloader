@@ -1,0 +1,203 @@
+/* Invoice.css */
+
+/* ===============================
+   Variables & Base Styles
+   =============================== */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+:root {
+  --primary-color: #4a90e2;
+  --secondary-color: #f5f7fa;
+  --accent-color: #50e3c2;
+  --text-color: #333;
+  --bg-light: #fff;
+  --radius: 8px;
+  --gap: 1rem;
+  --padding: 1rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  background: var(--secondary-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ===============================
+      Main Container & Layout
+      =============================== */
+.main-content {
+  flex: 1;
+  max-width: 1200px;
+  margin: var(--gap) auto var(--gap);
+  padding: var(--padding);
+  background: var(--bg-light);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Grid: 1 column mobile → 2 columns tablet+ */
+.invoice {
+  display: grid; /* CSS Grid container */
+  grid-template-columns: 1fr; /* Single column by default */
+  gap: var(--gap);
+}
+@media (min-width: 768px) {
+  .invoice {
+    grid-template-columns: 280px 1fr; /* Sidebar + main content */
+  }
+}
+
+/* ===============================
+      Sidebar (Aside) Styling
+      =============================== */
+.invoice-aside {
+  background: var(--primary-color);
+  color: #fff;
+  padding: var(--padding);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  order: 0; /* default order */
+}
+@media (max-width: 767px) {
+  .invoice-aside {
+    order: -1; /* move aside above content on mobile */
+  }
+}
+
+.invoice-logo {
+  height: 50px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.invoice-person .name {
+  font-weight: 500;
+}
+.invoice-person .position {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* ===============================
+      Main Content Styling
+      =============================== */
+.invoice-content {
+  background: var(--bg-light);
+  padding: var(--padding);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.invoice-header {
+  display: flex; /* Flexbox header */
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--gap);
+}
+.invoice-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+.invoice-order div {
+  font-size: 0.9rem;
+}
+
+/* ===============================
+      Responsive Tables
+      =============================== */
+.table-responsive {
+  overflow-x: auto; /* Horizontal scroll on small screens */
+  margin-bottom: var(--gap);
+}
+.invoice-details,
+.invoice-summary {
+  width: 100%;
+  border-collapse: collapse;
+}
+.invoice-details th,
+.invoice-details td,
+.invoice-summary th,
+.invoice-summary td {
+  padding: 0.75rem;
+  border: 1px solid #e1e1e1;
+}
+/* Remove fixed min‐width */
+.invoice-details,
+.invoice-summary {
+  min-width: 0; /* allow tables to shrink/scroll */
+}
+
+/* ===============================
+      Payment & Message
+      =============================== */
+.invoice-payment-details p {
+  margin: 0.5rem 0;
+}
+.invoice-message h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+/* ===============================
+      Footer Buttons (Flexbox)
+      =============================== */
+.invoice-footer {
+  display: flex; /* Flexbox footer */
+  flex-wrap: wrap; /* wrap on small screens */
+  justify-content: flex-end; /* align right on desktop */
+  gap: 0.5rem;
+  margin-top: var(--gap);
+}
+.invoice-footer .btn {
+  flex: 0 1 auto; /* don’t stretch too much */
+  min-width: 120px; /* tappable size */
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.invoice-footer .btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Adjust button layout on mobile */
+@media (max-width: 767px) {
+  .invoice-footer {
+    justify-content: center; /* center on phones */
+  }
+  .invoice-footer .btn {
+    flex: 1 1 100%; /* full-width buttons */
+  }
+}
+
+/* ===============================
+      Font & Padding Tweaks
+      =============================== */
+@media (max-width: 480px) {
+  body {
+    font-size: 0.9rem; /* smaller base font */
+  }
+  .main-content {
+    padding: 0.75rem; /* reduce padding */
+  }
+  .invoice-header,
+  .invoice-payment-details,
+  .invoice-message {
+    margin-bottom: 0.75rem;
+  }
+}
